@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:qr_scan/provider/ui_provider.dart';
 import 'package:qr_scan/screens/screens.dart';
 import 'package:qr_scan/widgets/widgets.dart';
 
@@ -27,7 +29,8 @@ class _HomeScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const curentIndex = 0;
+    final uiProvider = Provider.of<UiProvider>(context);
+    final curentIndex = uiProvider.selectedMenuOpt;
 
     switch (curentIndex) {
       case 0:
