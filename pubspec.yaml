@@ -32,7 +32,9 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_barcode_scanner: ^2.0.0
+  path_provider: ^2.0.12
   provider: ^6.0.5
+  sqflite: ^2.2.4+1
 
 dev_dependencies:
   flutter_lints: ^2.0.0
