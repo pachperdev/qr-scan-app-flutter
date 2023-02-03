@@ -34,8 +34,10 @@ class _HomeScreenBody extends StatelessWidget {
     final uiProvider = Provider.of<UiProvider>(context);
     final curentIndex = uiProvider.selectedMenuOpt;
 
-    final tempScan = ScanModel(valor: 'https://github.com/pachperdev');
-    DBProvider.db.nuevoScan(tempScan);
+    // final tempScan = ScanModel(valor: 'https://github.com/pachperdev');
+    // DBProvider.db.nuevoScan(tempScan);
+    // DBProvider.db.getScanById(10).then((scan) => print(scan!.valor));
+    DBProvider.db.getScanByTipo('http').then((print));
 
     switch (curentIndex) {
       case 0:

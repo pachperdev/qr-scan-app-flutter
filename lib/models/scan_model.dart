@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-ScanModel scanModelFromMap(String str) => ScanModel.fromMap(json.decode(str));
+ScanModel scanModelFromMap(String str) => ScanModel.fromJson(json.decode(str));
 
 String scanModelToMap(ScanModel data) => json.encode(data.toJson());
 
@@ -25,7 +25,7 @@ class ScanModel {
   String? tipo;
   String valor;
 
-  factory ScanModel.fromMap(Map<String, dynamic> json) => ScanModel(
+  factory ScanModel.fromJson(Map<String, dynamic> json) => ScanModel(
         id: json["id"],
         tipo: json["tipo"],
         valor: json["valor"],
