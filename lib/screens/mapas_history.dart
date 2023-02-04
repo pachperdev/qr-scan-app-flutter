@@ -5,6 +5,14 @@ class MapasHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('MapasHistory'));
+    return ListView.builder(
+      itemCount: 10,
+      itemBuilder: (context, index) => const ListTile(
+        leading: Icon(Icons.map_sharp),
+        title: Text('http:jdsjndjsnds'),
+        subtitle: Text('ID:1'),
+        trailing: Icon(Icons.arrow_forward_ios),
+      ),
+    );
   }
 }
