@@ -69,13 +69,13 @@ class DBProvider {
     return res;
   }
 
-  Future<int> delateScan(int id) async {
+  Future<int> deleteScan(int id) async {
     final db = await database;
     final res = await db.delete('Scans', where: 'id = ?', whereArgs: [id]);
     return res;
   }
 
-  Future<int> delateScanAll() async {
+  Future<int> deleteScanAll() async {
     final db = await database;
     final res = await db.delete('Scans');
     return res;
