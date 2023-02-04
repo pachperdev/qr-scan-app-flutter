@@ -37,7 +37,7 @@ class _HomeScreenBody extends StatelessWidget {
     // final tempScan = ScanModel(valor: 'https://github.com/pachperdev');
     // DBProvider.db.nuevoScan(tempScan);
     // DBProvider.db.getScanById(10).then((scan) => print(scan!.valor));
-    DBProvider.db.getScanByTipo('http').then((print));
+    DBProvider.db.delateScanAll().then(print);
 
     switch (curentIndex) {
       case 0:

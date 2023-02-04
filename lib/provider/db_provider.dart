@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:qr_scan/models/scan_model.dart';
@@ -47,24 +48,18 @@ class DBProvider {
   Future<ScanModel?> getScanById(int id) async {
     final db = await database;
     final res = await db.query('Scans', where: 'id = ?', whereArgs: [id]);
-
     return res.isNotEmpty ? ScanModel.fromJson(res.first) : null;
   }
 
   Future<List<ScanModel>> getScanAll() async {
     final db = await database;
     final res = await db.query('Scans');
-
     return res.isNotEmpty ? res.map((s) => ScanModel.fromJson(s)).toList() : [];
   }
 
   Future<List<ScanModel>> getScanByTipo(String tipo) async {
     final db = await database;
     final res = await db.query('Scans', where: 'tipo = ?', whereArgs: [tipo]);
-    // final res = await db.rawQuery('''
-    //   SELECT * FROM Scans WHERE tipo = '$tipo'
-    // ''');
-
     return res.isNotEmpty ? res.map((s) => ScanModel.fromJson(s)).toList() : [];
   }
 
@@ -72,6 +67,18 @@ class DBProvider {
     final db = await database;
     final res = await db.update('Scans', nuevoScan.toJson(),
         where: 'id = ?', whereArgs: [nuevoScan.id]);
+    return res;
+  }
+
+  Future<int> delateScan(int id) async {
+    final db = await database;
+    final res = await db.delete('Scans', where: 'id = ?', whereArgs: [id]);
+    return res;
+  }
+
+  Future<int> delateScanAll() async {
+    final db = await database;
+    final res = await db.delete('Scans');
     return res;
   }
 }
