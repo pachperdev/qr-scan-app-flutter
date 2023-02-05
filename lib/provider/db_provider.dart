@@ -23,7 +23,6 @@ class DBProvider {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
 
     final path = join(documentsDirectory.path, 'ScansDB.db');
-    print(path);
 
     return await openDatabase(path, version: 1, onOpen: (db) {},
         onCreate: (Database db, int version) async {
@@ -40,7 +39,7 @@ class DBProvider {
   Future<int> nuevoScan(ScanModel nuevoScan) async {
     final db = await database;
     final res = await db.insert('Scans', nuevoScan.toJson());
-    print(res);
+    // Es el ID del último registro insertado;
     return res;
   }
 
@@ -50,15 +49,18 @@ class DBProvider {
     return res.isNotEmpty ? ScanModel.fromJson(res.first) : null;
   }
 
-  Future<List<ScanModel>> getScanAll() async {
+  Future<List<ScanModel>> getTodosLosScans() async {
     final db = await database;
     final res = await db.query('Scans');
     return res.isNotEmpty ? res.map((s) => ScanModel.fromJson(s)).toList() : [];
   }
 
-  Future<List<ScanModel>> getScanByTipo(String tipo) async {
+  Future<List<ScanModel>> getScansPorTipo(String tipo) async {
     final db = await database;
-    final res = await db.query('Scans', where: 'tipo = ?', whereArgs: [tipo]);
+    // final res = await db.query('Scans', where: 'tipo = ?', whereArgs: ['tipo']);
+    final res = await db.rawQuery('''
+      SELECT * FROM Scans WHERE tipo = '$tipo'    
+    ''');
     return res.isNotEmpty ? res.map((s) => ScanModel.fromJson(s)).toList() : [];
   }
 

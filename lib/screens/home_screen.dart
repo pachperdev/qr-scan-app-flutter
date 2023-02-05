@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qr_scan/provider/db_provider.dart';
+import 'package:qr_scan/provider/scan_list_provider.dart';
 import 'package:qr_scan/provider/ui_provider.dart';
 import 'package:qr_scan/screens/screens.dart';
 import 'package:qr_scan/widgets/widgets.dart';
@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
           IconButton(onPressed: () {}, icon: const Icon(Icons.delete_forever)),
         ],
       ),
-      body: const _HomeScreenBody(),
+      body: _HomeScreenBody(),
       floatingActionButton: const ScanButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: const CustomNavigationBar(),
@@ -26,26 +26,29 @@ class HomeScreen extends StatelessWidget {
 }
 
 class _HomeScreenBody extends StatelessWidget {
-  const _HomeScreenBody();
-
   @override
   Widget build(BuildContext context) {
+    // Obtener el selected menu opt
     final uiProvider = Provider.of<UiProvider>(context);
-    final curentIndex = uiProvider.selectedMenuOpt;
 
-    // final tempScan = ScanModel(valor: 'https://github.com/pachperdev');
-    // DBProvider.db.nuevoScan(tempScan);
-    // DBProvider.db.getScanById(10).then((scan) => print(scan!.valor));
-    DBProvider.db.deleteScanAll().then(print);
+    // Cambiar para mostrar la pagina respectiva
+    final currentIndex = uiProvider.selectedMenuOpt;
 
-    switch (curentIndex) {
+    // Usar el ScanListProvider
+    final scanListProvider =
+        Provider.of<ScanListProvider>(context, listen: false);
+
+    switch (currentIndex) {
       case 0:
+        scanListProvider.cargarScanPorTipo('geo');
         return const MapasHistory();
+
       case 1:
+        scanListProvider.cargarScanPorTipo('http');
         return const DirectionHistory();
+
       default:
-        const MapasHistory();
+        return const MapasHistory();
     }
-    return const Center();
   }
 }

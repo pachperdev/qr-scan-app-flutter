@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:qr_scan/provider/db_provider.dart';
 import 'package:qr_scan/provider/scan_list_provider.dart';
 import 'package:qr_scan/provider/ui_provider.dart';
 import 'package:qr_scan/screens/screens.dart';

@@ -1,12 +1,7 @@
-// To parse this JSON data, do
-//
-//     final scanModel = scanModelFromMap(jsonString);
-
 import 'dart:convert';
 
-ScanModel scanModelFromMap(String str) => ScanModel.fromJson(json.decode(str));
-
-String scanModelToMap(ScanModel data) => json.encode(data.toJson());
+ScanModel scanModelFromJson(String str) => ScanModel.fromJson(json.decode(str));
+String scanModelToJson(ScanModel data) => json.encode(data.toJson());
 
 class ScanModel {
   ScanModel({
@@ -15,7 +10,7 @@ class ScanModel {
     required this.valor,
   }) {
     if (valor.contains('http')) {
-      tipo == 'http';
+      tipo = 'http';
     } else {
       tipo = 'geo';
     }
