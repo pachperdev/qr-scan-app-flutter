@@ -15,19 +15,20 @@ class _MapScreenState extends State<MapScreen> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 
-  static const CameraPosition puntoInicial = CameraPosition(
-    target: LatLng(3.3878616, -76.5487603),
-    zoom: 14.4746,
-  );
   @override
   Widget build(BuildContext context) {
     final ScanModel scan =
         ModalRoute.of(context)!.settings.arguments as ScanModel;
 
+    final CameraPosition puntoInicial = CameraPosition(
+      target: scan.getLatLng(),
+      zoom: 17,
+    );
+
     return Scaffold(
       appBar: AppBar(title: const Text('Mapa')),
       body: GoogleMap(
-        mapType: MapType.hybrid,
+        mapType: MapType.normal,
         initialCameraPosition: puntoInicial,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
