@@ -10,9 +10,6 @@ class DirectionHistory extends StatelessWidget {
     final scanListProvider = Provider.of<ScanListProvider>(context);
     final scans = scanListProvider.scans;
 
-    // return const Center(
-    //   child: Text('kaaka'),
-    // );
     return ListView.builder(
       itemCount: scans.length,
       itemBuilder: (context, index) => ListTile(

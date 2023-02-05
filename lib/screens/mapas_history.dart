@@ -12,11 +12,21 @@ class MapasHistory extends StatelessWidget {
 
     return ListView.builder(
       itemCount: scans.length,
-      itemBuilder: (context, index) => ListTile(
-        leading: const Icon(Icons.map_sharp),
-        title: Text(scans[index].valor.toString()),
-        subtitle: Text(scans[index].id.toString()),
-        trailing: const Icon(Icons.arrow_forward_ios),
+      itemBuilder: (context, index) => Dismissible(
+        key: UniqueKey(),
+        background: Container(
+          color: Colors.redAccent,
+        ),
+        onDismissed: (DismissDirection direction) {
+          Provider.of<ScanListProvider>(context, listen: false)
+              .borrarScanPorId(scans[index].id!);
+        },
+        child: ListTile(
+          leading: const Icon(Icons.map_sharp),
+          title: Text(scans[index].valor.toString()),
+          subtitle: Text(scans[index].id.toString()),
+          trailing: const Icon(Icons.arrow_forward_ios),
+        ),
       ),
     );
   }
