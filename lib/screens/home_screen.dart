@@ -12,21 +12,21 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: const Text('Historial'),
         actions: [
           IconButton(
+              icon: const Icon(Icons.delete_forever),
               onPressed: () {
-                final scanListProvider =
-                    Provider.of<ScanListProvider>(context, listen: false);
-                scanListProvider.borrarTodos();
-              },
-              icon: const Icon(Icons.delete_forever)),
+                Provider.of<ScanListProvider>(context, listen: false)
+                    .borrarTodos();
+              })
         ],
       ),
       body: _HomeScreenBody(),
+      bottomNavigationBar: const CustomNavigationBar(),
       floatingActionButton: const ScanButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: const CustomNavigationBar(),
     );
   }
 }

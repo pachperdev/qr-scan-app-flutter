@@ -18,7 +18,7 @@ class ScanTiles extends StatelessWidget {
         itemBuilder: (_, i) => Dismissible(
               key: UniqueKey(),
               background: Container(
-                color: Colors.redAccent,
+                color: Colors.red,
               ),
               onDismissed: (DismissDirection direction) {
                 Provider.of<ScanListProvider>(context, listen: false)
@@ -26,11 +26,12 @@ class ScanTiles extends StatelessWidget {
               },
               child: ListTile(
                 leading: Icon(
-                  tipo == 'http' ? Icons.home_outlined : Icons.map_outlined,
-                ),
+                    tipo == 'http' ? Icons.home_outlined : Icons.map_outlined,
+                    color: Theme.of(context).primaryColor),
                 title: Text(scans[i].valor),
                 subtitle: Text(scans[i].id.toString()),
-                trailing: const Icon(Icons.keyboard_arrow_right),
+                trailing:
+                    const Icon(Icons.keyboard_arrow_right, color: Colors.grey),
                 onTap: () => launchURL(context, scans[i]),
               ),
             ));
