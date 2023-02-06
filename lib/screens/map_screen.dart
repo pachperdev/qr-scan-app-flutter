@@ -35,7 +35,19 @@ class _MapScreenState extends State<MapScreen> {
     );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Mapa')),
+      appBar: AppBar(
+        title: const Text('Mapa'),
+        actions: [
+          IconButton(
+              icon: const Icon(Icons.location_disabled),
+              onPressed: () async {
+                final GoogleMapController controller = await _controller.future;
+                controller.animateCamera(CameraUpdate.newCameraPosition(
+                    CameraPosition(
+                        target: scan.getLatLng(), zoom: 17.5, tilt: 50)));
+              })
+        ],
+      ),
       body: GoogleMap(
         mapType: MapType.normal,
         markers: markers,
