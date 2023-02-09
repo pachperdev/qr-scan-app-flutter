@@ -37,7 +37,9 @@ class DetailsScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      scan.tipo == 'Web' ? Icons.public : Icons.location_pin,
+                      scan.tipo == 'Web' || scan.tipo == 'Texto'
+                          ? Icons.public
+                          : Icons.location_pin,
                     ),
                     const SizedBox(width: 3),
                     Text(

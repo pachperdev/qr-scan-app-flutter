@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_scan/provider/scan_list_provider.dart';
-import 'package:qr_scan/utils/utils.dart';
 
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
@@ -12,6 +11,7 @@ class HistoryScreen extends StatelessWidget {
     final scans = scanListProvider.scans;
 
     return ListView.builder(
+        physics: const BouncingScrollPhysics(),
         itemCount: scans.length,
         itemBuilder: (_, i) => Dismissible(
               key: UniqueKey(),
@@ -24,7 +24,9 @@ class HistoryScreen extends StatelessWidget {
               },
               child: ListTile(
                 leading: Icon(
-                  scans[i].tipo == 'Web' ? Icons.public : Icons.location_pin,
+                  scans[i].tipo == 'Web' || scans[i].tipo == 'Texto'
+                      ? Icons.public
+                      : Icons.location_pin,
                 ),
                 title: Text(scans[i].valor),
                 subtitle: Column(

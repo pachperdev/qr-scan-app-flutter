@@ -10,6 +10,13 @@ Future launchURL(BuildContext context, ScanModel scan) async {
     } else {
       throw 'Could not launch $url';
     }
+  } else if (scan.tipo == 'Texto') {
+    final Uri url = Uri.parse('https://www.google.com/search?q=${scan.valor}');
+    if (scan.tipo == 'Texto') {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   } else {
     Navigator.pushNamed(context, 'map', arguments: scan);
   }
