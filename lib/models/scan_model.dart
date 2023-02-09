@@ -12,9 +12,11 @@ class ScanModel {
     required this.valor,
   }) {
     if (valor.contains('http')) {
-      tipo = 'http';
+      tipo = 'Web';
+    } else if (valor.contains('geo')) {
+      tipo = 'Ubicacion';
     } else {
-      tipo = 'geo';
+      tipo = 'Texto';
     }
   }
 

@@ -24,8 +24,8 @@ class CustomNavigationBar extends StatelessWidget {
       elevation: 0,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.map),
-          label: 'Mapa',
+          icon: Icon(Icons.history),
+          label: 'Historial',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),

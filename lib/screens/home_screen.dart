@@ -50,13 +50,13 @@ class _HomeScreenBody extends StatelessWidget {
     switch (currentIndex) {
       case 0:
         scanListProvider.cargarScans();
-        return const MapasHistory();
+        return const HistoryScreen();
 
       case 1:
         return const ProfileScreen();
 
       default:
-        return const MapasHistory();
+        return const HistoryScreen();
     }
   }
 }
