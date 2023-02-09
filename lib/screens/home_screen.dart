@@ -10,10 +10,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final uiProvider = Provider.of<UiProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: const Text('Historial'),
+        title: Text(uiProvider.selectedNameAppBar),
         actions: [
           IconButton(
               icon: const Icon(Icons.delete_forever),
@@ -46,12 +48,11 @@ class _HomeScreenBody extends StatelessWidget {
 
     switch (currentIndex) {
       case 0:
-        scanListProvider.cargarScanPorTipo('geo');
+        scanListProvider.cargarScans();
         return const MapasHistory();
 
       case 1:
-        scanListProvider.cargarScanPorTipo('http');
-        return const DirectionHistory();
+        return const ProfileScreen();
 
       default:
         return const MapasHistory();

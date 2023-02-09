@@ -12,10 +12,8 @@ class ScanListProvider extends ChangeNotifier {
     // Asignar el ID de la base de datos al modelo
     nuevoScan.id = id;
 
-    if (tipoSeleccionado == nuevoScan.tipo) {
-      scans.add(nuevoScan);
-      notifyListeners();
-    }
+    scans.add(nuevoScan);
+    notifyListeners();
 
     return nuevoScan;
   }

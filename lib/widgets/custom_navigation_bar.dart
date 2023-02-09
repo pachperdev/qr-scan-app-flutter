@@ -12,13 +12,25 @@ class CustomNavigationBar extends StatelessWidget {
     final currentIndex = uiProvider.selectedMenuOpt;
 
     return BottomNavigationBar(
-      onTap: (int i) => uiProvider.selectedMenuOpt = i,
+      onTap: (int i) {
+        uiProvider.selectedMenuOpt = i;
+        if (i == 0) {
+          uiProvider.selectedNameAppBar = 'Historial';
+        } else {
+          uiProvider.selectedNameAppBar = 'Perfil del Dev';
+        }
+      },
       currentIndex: currentIndex,
       elevation: 0,
       items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Mapa'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.compass_calibration), label: 'Direcciones'),
+          icon: Icon(Icons.map),
+          label: 'Mapa',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          label: 'Perfil',
+        ),
       ],
     );
   }
