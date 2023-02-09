@@ -17,12 +17,13 @@ class HomeScreen extends StatelessWidget {
         elevation: 0,
         title: Text(uiProvider.selectedNameAppBar),
         actions: [
-          IconButton(
-              icon: const Icon(Icons.delete_forever),
-              onPressed: () {
-                Provider.of<ScanListProvider>(context, listen: false)
-                    .borrarTodos();
-              })
+          if (uiProvider.selectedMenuOpt == 0)
+            IconButton(
+                icon: const Icon(Icons.delete_forever),
+                onPressed: () {
+                  Provider.of<ScanListProvider>(context, listen: false)
+                      .borrarTodos();
+                })
         ],
       ),
       body: _HomeScreenBody(),
